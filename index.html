@@ -20,17 +20,23 @@
       color: #666;
       margin-bottom: 2rem;
     }
+    .button-container {
+      max-width: 260px;
+      margin: 0 auto;
+    }
+  
     .button {
       font-size: 1.2rem;
       padding: 12px 24px;
       margin-bottom: 1rem;
+      width: 100%; /* ✅ ปรับให้ความกว้างเท่ากัน */
       display: inline-block;
       border: none;
       border-radius: 10px;
       cursor: pointer;
       text-decoration: none;
-      min-width: 220px; /* ✅ กำหนดความกว้างขั้นต่ำให้เท่ากัน */
       text-align: center;
+      box-sizing: border-box;
     }
     .add-friend {
       background-color: #1c94ec;
@@ -57,11 +63,14 @@
   <h1>👋 ส่งต่อบอทให้เพื่อน</h1>
   <p>กดปุ่มด้านล่างเพื่อแชร์ลิงก์ให้เพื่อนของคุณผ่าน LINE</p>
 
-  <!-- ปุ่มเพิ่มเพื่อน -->
-  <a class="button add-friend" href="https://liff.line.me/2007002607-5Q82OXzJ">➕ เพิ่มเพื่อน</a><br>
-
-  <!-- ปุ่มแชร์ -->
-  <button class="button share-bot" onclick="shareBot()">📤 ส่งต่อให้เพื่อน</button>
+  <!-- ห่อปุ่มทั้งสองใน div เดียวกัน -->
+  <div class="button-container">
+    <!-- ปุ่มเพิ่มเพื่อน -->
+    <a class="button add-friend" href="https://liff.line.me/2007002607-5Q82OXzJ">➕ เพิ่มเพื่อน</a><br>
+  
+    <!-- ปุ่มแชร์ -->
+    <button class="button share-bot" onclick="shareBot()">📤 ส่งต่อให้เพื่อน</button>
+  </div>
 
   <div id="status"></div>
 
