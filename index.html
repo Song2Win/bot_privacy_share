@@ -7,56 +7,89 @@
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
     body {
-      font-family: sans-serif;
-      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
       padding: 2rem;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: #666;
+      margin-bottom: 2rem;
     }
     button {
       font-size: 1.2rem;
-      padding: 10px 20px;
+      padding: 12px 24px;
       background-color: #00c300;
       color: white;
       border: none;
       border-radius: 10px;
       cursor: pointer;
     }
+    button:hover {
+      background-color: #00a300;
+    }
+    #status {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: #333;
+    }
   </style>
 </head>
 <body>
-  <h2>👋 ส่งต่อบอทให้เพื่อน</h2>
-  <p>ลองใช้แล้วส่งต่อให้เพื่อนได้เลย</p>
+  <h1>👋 ส่งต่อบอทให้เพื่อน</h1>
+  <p>กดปุ่มด้านล่างเพื่อแชร์ลิงก์ให้เพื่อนของคุณผ่าน LINE</p>
+
   <button onclick="shareBot()">📤 ส่งต่อให้เพื่อน</button>
+  <div id="status"></div>
 
   <script>
-    async function main() {
-      await liff.init({ liffId: "2007002607-5Q82OXzJ" });
-
-      if (!liff.isLoggedIn()) {
-        liff.login();
-        return;
-      }
-    }
+    const LIFF_ID = "2007002607-5Q82OXzJ"; // ← เปลี่ยนเป็น LIFF ID ของคุณ
 
     async function shareBot() {
+      document.getElementById("status").innerText = "";
+
       try {
-        const result = await liff.shareTargetPicker([
-          {
-            type: "text",
-            text: `✅ มีบอทตัวนี้น่าสนใจ ลองกดดูเลย!\n👉 https://liff.line.me/2007002607-5Q82OXzJ`
+        await liff.init({
+          liffId: LIFF_ID,
+          features: {
+            shareTargetPicker: true
           }
-        ]);
-        if (result) {
-          alert("ส่งต่อเรียบร้อยแล้ว 🎉");
-        } else {
-          alert("คุณยกเลิกการส่งต่อ");
+        });
+
+        if (!liff.isLoggedIn()) {
+          liff.login();
+          return;
         }
+
+        if (liff.isInClient()) {
+          const result = await liff.shareTargetPicker([
+            {
+              type: "text",
+              text: `✅ มีบอทตัวนี้น่าสนใจ ลองกดดูเลย!\n👉 https://liff.line.me/${LIFF_ID}`
+            }
+          ]);
+
+          if (result) {
+            document.getElementById("status").innerText = "✅ ส่งต่อเรียบร้อยแล้ว!";
+          } else {
+            document.getElementById("status").innerText = "❌ คุณยกเลิกการส่งต่อ";
+          }
+        } else {
+          document.getElementById("status").innerText = "⚠️ กรุณาเปิดหน้านี้ในแอป LINE";
+        }
+
       } catch (err) {
-        alert("อุปกรณ์ของคุณไม่รองรับการแชร์");
-        console.error(err);
+        console.error("เกิดข้อผิดพลาด:", err);
+        document.getElementById("status").innerText = "❌ อุปกรณ์ของคุณไม่รองรับการแชร์";
       }
     }
 
-    main();
+    // เรียก init ทันทีในกรณีเปิดแล้วอยากให้แชร์เลย
+    // shareBot(); // ← uncomment ถ้าต้องการให้แชร์ทันที
   </script>
 </body>
 </html>
