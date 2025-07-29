@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ส่งต่อบอท</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      background-color: #00c300;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>👋 ส่งต่อบอทให้เพื่อน</h2>
+  <p>ลองใช้แล้วส่งต่อให้เพื่อนได้เลย</p>
+  <button onclick="shareBot()">📤 ส่งต่อให้เพื่อน</button>
+
+  <script>
+    async function main() {
+      await liff.init({ liffId: "2007002607-5Q82OXzJ" });
+
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        return;
+      }
+    }
+
+    async function shareBot() {
+      try {
+        const result = await liff.shareTargetPicker([
+          {
+            type: "text",
+            text: `✅ มีบอทตัวนี้น่าสนใจ ลองกดดูเลย!\n👉 https://liff.line.me/2007002607-5Q82OXzJ`
+          }
+        ]);
+        if (result) {
+          alert("ส่งต่อเรียบร้อยแล้ว 🎉");
+        } else {
+          alert("คุณยกเลิกการส่งต่อ");
+        }
+      } catch (err) {
+        alert("อุปกรณ์ของคุณไม่รองรับการแชร์");
+        console.error(err);
+      }
+    }
+
+    main();
+  </script>
+</body>
+</html>
