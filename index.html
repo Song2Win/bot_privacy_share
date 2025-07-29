@@ -66,10 +66,10 @@
   <!-- ห่อปุ่มทั้งสองใน div เดียวกัน -->
   <div class="button-container">
     <!-- ปุ่มเพิ่มเพื่อน -->
-    <a class="button add-friend" href="https://liff.line.me/2007002607-5Q82OXzJ">➕ เพิ่มเพื่อน</a><br>
+    <a class="button add-friend" href="https://liff.line.me/2007002607-5Q82OXzJ">➕ เพิ่มบอทเป็นเพื่อน</a><br>
   
     <!-- ปุ่มแชร์ -->
-    <button class="button share-bot" onclick="shareBot()">👥 ส่งต่อให้เพื่อน</button>
+    <button class="button share-bot" onclick="shareBot()">👥 ส่งต่อบอทให้เพื่อน</button>
   </div>
 
   <div id="status"></div>
@@ -97,7 +97,7 @@
           const result = await liff.shareTargetPicker([
             {
               type: "text",
-              text: `✅ มีบอทตัวนี้น่าสนใจ ลองกดดูเลย!\n👉 https://liff.line.me/${LIFF_ID}`
+              text: `✅ บอทตัวนี้น่าสนใจ ลองกดดูเลย!\n👉 https://liff.line.me/${LIFF_ID}`
             }
           ]);
 
