@@ -20,16 +20,28 @@
       color: #666;
       margin-bottom: 2rem;
     }
-    button {
+    .button {
       font-size: 1.2rem;
       padding: 12px 24px;
-      background-color: #00c300;
-      color: white;
+      margin-bottom: 1rem;
+      display: inline-block;
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      text-decoration: none;
     }
-    button:hover {
+    .add-friend {
+      background-color: #1c94ec;
+      color: white;
+    }
+    .add-friend:hover {
+      background-color: #1377c5;
+    }
+    .share-bot {
+      background-color: #00c300;
+      color: white;
+    }
+    .share-bot:hover {
       background-color: #00a300;
     }
     #status {
@@ -43,11 +55,16 @@
   <h1>👋 ส่งต่อบอทให้เพื่อน</h1>
   <p>กดปุ่มด้านล่างเพื่อแชร์ลิงก์ให้เพื่อนของคุณผ่าน LINE</p>
 
-  <button onclick="shareBot()">📤 ส่งต่อให้เพื่อน</button>
+  <!-- ปุ่มเพิ่มเพื่อน -->
+  <a class="button add-friend" href="https://liff.line.me/2007002607-5Q82OXzJ">➕ เพิ่มเพื่อน</a><br>
+
+  <!-- ปุ่มแชร์ -->
+  <button class="button share-bot" onclick="shareBot()">📤 ส่งต่อให้เพื่อน</button>
+
   <div id="status"></div>
 
   <script>
-    const LIFF_ID = "2007002607-EyPaVJM0"; // ← เปลี่ยนเป็น LIFF ID ของคุณ
+    const LIFF_ID = "2007002607-EyPaVJM0"; // ← ใส่ LIFF ID ของคุณ
 
     async function shareBot() {
       document.getElementById("status").innerText = "";
@@ -69,7 +86,7 @@
           const result = await liff.shareTargetPicker([
             {
               type: "text",
-              text: `✅ มีบอทตัวนี้น่าสนใจ ลองกดดูเลย!\n👉 https://liff.line.me/${2007002607-5Q82OXzJ}`
+              text: `✅ มีบอทตัวนี้น่าสนใจ ลองกดดูเลย!\n👉 https://liff.line.me/${LIFF_ID}`
             }
           ]);
 
@@ -87,9 +104,6 @@
         document.getElementById("status").innerText = "❌ อุปกรณ์ของคุณไม่รองรับการแชร์";
       }
     }
-
-    // เรียก init ทันทีในกรณีเปิดแล้วอยากให้แชร์เลย
-    // shareBot(); // ← uncomment ถ้าต้องการให้แชร์ทันที
   </script>
 </body>
 </html>
