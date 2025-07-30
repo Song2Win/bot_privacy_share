@@ -6,30 +6,49 @@
   <title>ส่งต่อบอท</title>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
+    :root {
+      --pastel-blue: #0066CC;
+      --pastel-blue-light: #E6F2FF;
+      --pastel-blue-dark: #0052a3;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      padding: 2rem;
-      text-align: center;
-      background-color: #f9f9f9;
+      background-color: var(--pastel-blue-light);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
+
+    .container {
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
     h1 {
-      font-size: 1.5rem;
+      font-size: 24px;
+      color: var(--pastel-blue);
       margin-bottom: 1rem;
     }
+
     p {
       color: #666;
       margin-bottom: 2rem;
     }
-    .button-container {
-      max-width: 260px;
-      margin: 0 auto;
-    }
-  
+
     .button {
-      font-size: 1.2rem;
-      padding: 12px 24px;
+      font-size: 1rem;
+      padding: 12px 20px;
       margin-bottom: 1rem;
-      width: 100%; /* ✅ ปรับให้ความกว้างเท่ากัน */
+      width: 100%;
       display: inline-block;
       border: none;
       border-radius: 25px;
@@ -37,23 +56,33 @@
       text-decoration: none;
       text-align: center;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent; /* ✅ ปิดแสงฟ้า */
+      -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
+      transition: all 0.2s ease;
     }
+
     .add-friend {
       background-color: #00B900;
       color: white;
+      box-shadow: 0 4px 8px rgba(0, 185, 0, 0.2);
     }
+
     .add-friend:hover {
       background-color: #00A500;
+      transform: translateY(-2px);
     }
+
     .share-bot {
       background-color: #1c94ec;
       color: white;
+      box-shadow: 0 4px 8px rgba(28, 148, 236, 0.2);
     }
+
     .share-bot:hover {
       background-color: #1377c5;
+      transform: translateY(-2px);
     }
+
     #status {
       margin-top: 1.5rem;
       font-size: 1rem;
@@ -62,22 +91,21 @@
   </style>
 </head>
 <body>
-  <h1>👋 ส่งต่อบอทให้เพื่อน</h1>
-  <p>กดปุ่มด้านล่างเพื่อแชร์ลิงก์ให้เพื่อนของคุณผ่าน LINE</p>
+  <div class="container">
+    <h1>👋 ส่งต่อบอทให้เพื่อน</h1>
+    <p>กดปุ่มด้านล่างเพื่อแชร์ลิงก์ให้เพื่อนของคุณผ่าน LINE</p>
 
-  <!-- ห่อปุ่มทั้งสองใน div เดียวกัน -->
-  <div class="button-container">
     <!-- ปุ่มเพิ่มเพื่อน -->
     <a class="button add-friend" href="https://liff.line.me/2007002607-5Q82OXzJ">➕ เพิ่มบอทเป็นเพื่อน</a><br>
-  
+
     <!-- ปุ่มแชร์ -->
     <button class="button share-bot" onclick="shareBot()">👥 ส่งต่อบอทให้เพื่อน</button>
+
+    <div id="status"></div>
   </div>
 
-  <div id="status"></div>
-
   <script>
-    const LIFF_ID = "2007002607-EyPaVJM0"; // ← ใส่ LIFF ID ของคุณ
+    const LIFF_ID = "2007002607-EyPaVJM0";
 
     async function shareBot() {
       document.getElementById("status").innerText = "";
