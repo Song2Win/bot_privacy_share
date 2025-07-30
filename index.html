@@ -45,7 +45,8 @@
       max-width: 400px;
       width: 90%;
       text-align: center;
-/*       max-height: 360px; /* จำกัดความสูงไว้ */ */
+      min-height: auto; /* ไม่ fix สูงเกินไป */
+      max-height: 360px; /* สูงสุดไม่เกิน 360px */
     }
 
     p {
@@ -65,7 +66,7 @@
       text-decoration: none;
       text-align: center;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color: transparent; /* ✅ ปิดแสงฟ้า */
       touch-action: manipulation;
       transition: all 0.2s ease;
     }
