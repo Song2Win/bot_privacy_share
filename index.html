@@ -18,9 +18,23 @@
       margin: 0;
       padding: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      gap: 15px;
+    }
+
+    .title-container {
+      text-align: center;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: var(--pastel-blue);
+      margin: 0;
     }
 
     .container {
@@ -29,14 +43,8 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       padding: 30px 20px;
       max-width: 400px;
-      width: 100%;
+      width: 90%;
       text-align: center;
-    }
-
-    h1 {
-      font-size: 24px;
-      color: var(--pastel-blue);
-      margin-bottom: 1rem;
     }
 
     p {
@@ -91,8 +99,13 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- ส่วนหัว -->
+  <div class="title-container">
     <h1>👋 ส่งต่อบอทให้เพื่อน</h1>
+  </div>
+
+  <!-- Container สีขาว -->
+  <div class="container">
     <p>กดปุ่มด้านล่างเพื่อแชร์ลิงก์ให้เพื่อนของคุณผ่าน LINE</p>
 
     <!-- ปุ่มเพิ่มเพื่อน -->
